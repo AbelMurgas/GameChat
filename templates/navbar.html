@@ -1,0 +1,36 @@
+<a href="{% url 'home' %}">
+    <h1>LOGO</h1>
+</a>
+<form action="{% url 'home' %}" method="GET">
+    <input name="q" id="tags" type="search" placeholder="Search Rooms...">
+</form>
+
+{% if request.user.is_authenticated %}
+  <p>Hello!, {{request.user}}</p>
+  <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+  <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+
+<hr>
+
+
+
+
+
+
+<script 
+    src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous">
+</script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script>
+    $( function() {
+      
+      $( "#tags" ).autocomplete({
+        source: "{% url 'autosuggest' %}",
+      });
+    } );
+    </script>
